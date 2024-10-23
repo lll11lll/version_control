@@ -26,26 +26,27 @@ def encode(decoded_pass):
     return encodedStr
 
 # Check user input
-def validate_user_input(user_input):
+def validate_user_input(user_input, encoded_password = ''):
     if user_input == '1':
         decoded_pass = input('Please enter your password to encode: ')
         print("Your password has been encoded and stored!")
         encoded_pass = encode(decoded_pass)
         return encoded_pass
     if user_input == '2':
-        # TO-DO CREATE DECODE FUNCTION
-        pass
+       print(encoded_password)
     if user_input == '3':
         exit()
 
 
 # main loop
 def main():
+    encoded_pass = ''
     while True:
         display_menu()
         user_input = get_user_input()
-        userpass = validate_user_input(user_input)
-        print(userpass)
-
+        if user_input == '1':
+            encoded_pass = validate_user_input(user_input)
+        if user_input == '2':
+           validate_user_input(user_input, encoded_password=encoded_pass)
 if __name__ == '__main__':
     main()
