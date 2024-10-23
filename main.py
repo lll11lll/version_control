@@ -25,6 +25,16 @@ def encode(decoded_pass):
 
     return encodedStr
 
+# Decode user password
+def decode(encoded_pass):
+    pass_index = {0: '7', 1: '8', 2: '9', 3: '0', 4: '1', 5: '2', 6: '3',
+                  7: '4', 8: '5', 9: '6'}
+    decoded_str = ''
+    for i in encoded_pass:
+        decoded_str += pass_index[int(i)]
+
+    return decoded_str
+
 # Check user input
 def validate_user_input(user_input, encoded_password = ''):
     if user_input == '1':
@@ -33,7 +43,7 @@ def validate_user_input(user_input, encoded_password = ''):
         encoded_pass = encode(decoded_pass)
         return encoded_pass
     if user_input == '2':
-       print(encoded_password)
+        print(f'Your encoded password is {encoded_password}, and your original password is {decode(encoded_password)}.\n')
     if user_input == '3':
         exit()
 
@@ -46,7 +56,11 @@ def main():
         user_input = get_user_input()
         if user_input == '1':
             encoded_pass = validate_user_input(user_input)
-        if user_input == '2':
-           validate_user_input(user_input, encoded_password=encoded_pass)
+        elif user_input == '2':
+            validate_user_input(user_input, encoded_password=encoded_pass)
+        elif user_input == '3':
+            exit()
+
+
 if __name__ == '__main__':
     main()
